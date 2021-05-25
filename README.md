@@ -3,7 +3,7 @@
 The system was build as RESTful service using [Nest](https://github.com/nestjs/nest) framework.
 The main reason to build it as REST service because most services are build and communicating via HTTP. The reason to choose Nest is because it's build on top usual for Node.js backend libraries like Express or Fastify. It provides opportunity to write code like in mature backend frameworks Spring, ASP.NET and build services at any scale and complexity. Also out of the box it provides setup for linting, configuring Typescript, separating logic in Controllers, Services and writing testable code using Dependency Injection. 
 
-For unit testing is used Jest library and for end-to-end supertest. Also were added some validations for incoming request and if file is present in library.json
+For unit testing is used Jest library and for end-to-end Supertest.
 
 For caching strategy is used LRU(least recently used) and for each node simulation we have queue where most recent elements are added in the begging of queue and when queue size is bigger than 1GB LRU is deleted
 ## Documentation 
