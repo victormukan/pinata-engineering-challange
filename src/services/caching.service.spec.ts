@@ -37,17 +37,13 @@ describe('Caching Services', () => {
 
   describe('getFile', () => {
     it('should cache single file', async () => {
-      const responses = await cachingService.getMultipleFiles([
-        mockRequests[0],
-      ]);
+      const responses = await cachingService.getFile(mockRequests[0]);
 
-      expect(responses).toStrictEqual([
-        {
-          id: '961f9387-6bec-4e95-a22d-221094d5d524',
-          route: 'NY:picture.jpeg',
-          cached: false,
-        },
-      ]);
+      expect(responses).toStrictEqual({
+        id: '961f9387-6bec-4e95-a22d-221094d5d524',
+        route: 'NY:picture.jpeg',
+        cached: false,
+      });
 
       expect(cachingService.getCachingState()).toStrictEqual({
         NY: [{ filename: 'picture.jpeg', size_bytes: 100000000 }],
