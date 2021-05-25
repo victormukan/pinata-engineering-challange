@@ -1,5 +1,9 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { ApiBadRequestResponse, ApiOkResponse } from '@nestjs/swagger';
+import {
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiOkResponse,
+} from '@nestjs/swagger';
 import { DownloadFileRequestDto, DownloadFileResponseDto } from './cdn.dto';
 import { LoggingService } from './services/logging.service';
 import { CachingService } from './services/caching.service';
@@ -14,7 +18,7 @@ export class AppController {
   }
 
   @Post('cache')
-  @ApiOkResponse({
+  @ApiCreatedResponse({
     type: DownloadFileResponseDto,
     description: 'Get cached file',
   })
