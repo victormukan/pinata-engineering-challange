@@ -1,23 +1,44 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { ApiOkResponse } from '@nestjs/swagger';
-import { AppService } from './app.service';
+import { ApiBadRequestResponse, ApiOkResponse } from '@nestjs/swagger';
 import { DownloadFileRequestDto, DownloadFileResponseDto } from './cdn.dto';
+import { LoggingService } from './services/logging.service';
+import { CachingService } from './services/caching.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly cachingService: CachingService,
+    private readonly loggingService: LoggingService,
+  ) {
+    this.loggingService.clearAllResponses();
+  }
 
-  @Post()
+  @Post('cache')
   @ApiOkResponse({
     type: DownloadFileResponseDto,
     description: 'Get cached file',
   })
-  getState(@Body() body: DownloadFileRequestDto) {
-    return this.appService.getCDNFromLocation(body);
+  @ApiBadRequestResponse({
+    description: 'File not found',
+  })
+  async getCachedFile(@Body() body: DownloadFileRequestDto) {
+    const response = await this.cachingService.getFile(body);
+    this.loggingService.saveRequest(body);
+    this.loggingService.saveResponse(response);
+
+    return response;
   }
 
-  @Get()
-  getHello(): string {
-    return 'ok';
+  @Get('cache/local')
+  @ApiOkResponse({
+    type: [DownloadFileResponseDto],
+    description: 'Process local requests',
+  })
+  async getCachedFilesLocal() {
+    const requests = this.loggingService.getAllRequests();
+    const responses = await this.cachingService.getMultipleFiles(requests);
+
+    responses.forEach((i) => this.loggingService.saveResponse(i));
+    return responses;
   }
 }

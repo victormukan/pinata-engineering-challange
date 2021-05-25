@@ -1,0 +1,32 @@
+[
+  {
+    "id": "7d3931bb-d67d-4103-87a4-2a900185d071",
+    "filename": "movie.mp4",
+    "lat": 37.46,
+    "long": -122.24
+  },
+  {
+    "id": "961f9387-6bec-4e95-a22d-221094d5d522",
+    "filename": "js-tutorial.mp4",
+    "lat": 37.46,
+    "long": -122.24
+  },
+  {
+    "id": "961f9387-6bec-4e95-a22d-221094d5d524",
+    "filename": "picture.jpeg",
+    "lat": 40.71,
+    "long": -74
+  },
+  {
+    "id": "961f9387-6bec-4e95-a22d-221094d5d524",
+    "filename": "picture.jpeg",
+    "lat": 40.71,
+    "long": -74
+  },
+  {
+    "id": "961f9387-6bec-4e95-a22d-221094d5d523",
+    "filename": "js-tutorial.mp4",
+    "lat": 40.71,
+    "long": -74
+  }
+]

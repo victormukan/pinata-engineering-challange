@@ -1,45 +1,32 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsNumber, IsUUID } from 'class-validator';
 
-export class CacheFileDto {
-  @ApiProperty()
-  @IsNotEmpty()
-  filename: string;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  sizeBytes: string;
-}
-
 export class DownloadFileRequestDto {
-  @ApiProperty()
+  @ApiProperty({ default: 'f374fca1-3113-408b-be1c-320d4be6d037' })
   @IsNotEmpty()
   @IsUUID()
   id: string;
 
-  @ApiProperty()
+  @ApiProperty({ default: 'movie.mp4' })
   @IsNotEmpty()
   filename: string;
 
-  @ApiProperty()
+  @ApiProperty({ default: 37.46 })
   @IsNumber()
   lat: number;
 
-  @ApiProperty()
+  @ApiProperty({ default: -122.24 })
   @IsNumber()
   long: number;
 }
 
 export class DownloadFileResponseDto {
-  @ApiProperty()
+  @ApiProperty({ default: 'f374fca1-3113-408b-be1c-320d4be6d037' })
   id: string;
 
-  @ApiProperty()
-  filename: string;
+  @ApiProperty({ default: 'CA:movie.mp4' })
+  route: string;
 
-  @ApiProperty()
-  lat: string;
-
-  @ApiProperty()
-  lang: string;
+  @ApiProperty({ default: true })
+  cached: boolean;
 }

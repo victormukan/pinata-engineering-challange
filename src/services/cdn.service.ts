@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
-import { DownloadFileRequestDto } from './cdn.dto';
+
 @Injectable()
-export class AppService {
-  async getCDNFromLocation({ lat, long }: DownloadFileRequestDto) {
+export class CDNService {
+  async getCDNFromLocation(lat: number, long: number) {
     const { data } = await axios.get(
       `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${long}&format=json`,
     );
@@ -15,7 +15,7 @@ export class AppService {
   }
 }
 
-enum StatesCode {
+export enum StatesCode {
   'Alabama' = 'AL',
   'Alaska' = 'AK',
   'Arizona' = 'AZ',

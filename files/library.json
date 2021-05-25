@@ -1,0 +1,6 @@
+[
+  { "filename": "picture.jpeg", "size_bytes": 100000000 },
+  { "filename": "movie.mp4", "size_bytes": 700000000 },
+  { "filename": "funnyvid.mp4", "size_bytes": 300000000 },
+  { "filename": "js-tutorial.mp4", "size_bytes": 400000000 }
+]
